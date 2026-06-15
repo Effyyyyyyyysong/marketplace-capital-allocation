@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Marketplace Capital Allocation & Pricing - Effy Song</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root{
+  --wolt:#00C2A8;
+  --wolt-dark:#009E8A;
+  --navy:#16324F;
+  --ink:#1F2933;
+  --muted:#637381;
+  --bg:#F7FAFB;
+  --card:#FFFFFF;
+  --line:#E4ECF1;
+  --soft:#EAFBF8;
+  --amber:#FFF6E5;
+  --red:#FDEDED;
+  --blue:#EAF4FF;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  line-height:1.62;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1160px;margin:0 auto;padding:52px 38px 72px}
+.hero{
+  background:linear-gradient(135deg,#ffffff 0%,#F1FFFC 100%);
+  border:1px solid var(--line);border-radius:28px;padding:46px 48px;
+  margin-bottom:30px;position:relative;overflow:hidden;
+}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;background:rgba(0,194,168,.13)}
+.kicker{color:var(--wolt-dark);font-weight:850;letter-spacing:.08em;text-transform:uppercase;font-size:12px;margin-bottom:12px}
+h1{font-size:46px;line-height:1.05;margin:0 0 14px;color:var(--navy);letter-spacing:-1.1px;max-width:850px}
+.subtitle{font-size:19px;color:var(--muted);max-width:910px;margin:0}
+.byline{font-size:13px;color:#8a98a8;margin-top:22px}
+.nav{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:20px 0 38px}
+.nav div{background:white;border:1px solid var(--line);border-radius:14px;padding:13px 14px;font-size:12px;color:var(--muted)}
+.nav b{display:block;color:var(--navy);font-size:13px;margin-bottom:3px}
+.section{margin:44px 0}
+.section-title{display:flex;align-items:center;gap:13px;margin:0 0 18px}
+.no{width:32px;height:32px;border-radius:50%;background:var(--wolt);color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;flex:none}
+h2{font-size:26px;line-height:1.2;margin:0;color:var(--navy);letter-spacing:-.35px}
+h3{font-size:18px;margin:0 0 8px;color:var(--navy)}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 26px;margin:16px 0;box-shadow:0 1px 0 rgba(22,50,79,.03)}
+.quote{background:var(--navy);color:white;border-radius:22px;padding:30px 34px;font-size:27px;line-height:1.32;font-weight:760;letter-spacing:-.3px;margin:22px 0}
+.quote span{color:#8FF1DE}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.metric{font-size:38px;line-height:1;font-weight:850;color:var(--wolt-dark);letter-spacing:-.8px;margin-bottom:8px}
+.metric.smallm{font-size:30px}
+.label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:8px}
+.lesson{background:var(--soft);border-left:5px solid var(--wolt);border-radius:14px;padding:17px 20px;margin:14px 0;color:var(--navy)}
+.lesson b{font-size:16px}
+.flow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:20px 0 4px}
+.flow .step{flex:1;background:white;border:1px solid var(--line);border-radius:16px;padding:16px 14px;text-align:center;color:var(--navy);font-weight:760;font-size:13px;min-height:74px;display:flex;align-items:center;justify-content:center}
+.arrow{color:var(--wolt-dark);font-weight:900}
+table{width:100%;border-collapse:collapse;margin:12px 0 4px;font-size:13px}
+th,td{border:1px solid var(--line);padding:11px 12px;text-align:left;vertical-align:top}
+th{background:var(--navy);color:white;font-size:12px}
+td.good{background:var(--soft);font-weight:700;color:var(--navy)}
+td.warn{background:var(--amber)}
+td.bad{background:var(--red)}
+td.blue{background:var(--blue)}
+.small{font-size:12.5px;color:var(--muted)}
+.chips{margin-top:8px}
+.chip{display:inline-block;padding:5px 10px;border-radius:18px;background:white;border:1px solid var(--line);color:var(--muted);font-size:12px;margin:3px 3px 0 0}
+.analysis{border-top:2px dashed #C7D8E2;margin-top:50px;padding-top:28px}
+.formula{background:#102A43;color:#EAFBF8;border-radius:16px;padding:20px 22px;font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:13px;line-height:1.8;overflow-x:auto;margin:13px 0}
+.formula .g{color:#8FF1DE}.formula .y{color:#FFD166}.formula .b{color:#94C6FF}
+.callout{background:#ffffff;border:1px solid var(--line);border-left:6px solid var(--wolt);border-radius:18px;padding:22px 24px;margin:18px 0}
+.tech{background:#F8FBFF;border:1px solid #DCEBFF;border-radius:18px;padding:20px 22px;margin:14px 0}
+.source{font-size:11px;color:#8a98a8;margin-top:8px}
+.final{background:linear-gradient(135deg,#16324F 0%,#102A43 100%);color:white;border-radius:26px;padding:36px 40px;font-size:22px;line-height:1.45;margin-top:42px}
+.final b{color:#8FF1DE}
+@media(max-width:860px){
+  .wrap{padding:28px 18px 50px}.hero{padding:32px 24px}h1{font-size:34px}.subtitle{font-size:17px}
+  .nav,.grid4,.grid3,.grid2{grid-template-columns:1fr}.flow{flex-direction:column}.arrow{transform:rotate(90deg)}.quote{font-size:22px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section class="hero">
+  <div class="kicker">A personal strategy memo</div>
+  <h1>How I Think About Capital Allocation in Marketplaces</h1>
+  <p class="subtitle">Lessons from managing a $3M incentive budget, how I would approach Consumer Pricing at Wolt, and what I learned from multi-player food-delivery competition.</p>
+  <div class="byline">Effy Song · effysong0723@gmail.com · linkedin.com/in/effy-song-a8778b1a5</div>
+</section>
+
+<div class="nav">
+  <div><b>01</b>Problem I solve</div>
+  <div><b>02</b>How I spent money</div>
+  <div><b>03</b>If I joined Wolt</div>
+  <div><b>04</b>China learning</div>
+  <div><b>05</b>Tech / data ability</div>
+  <div><b>06</b>How I would calculate</div>
+</div>
+
+<div class="quote">
+  For the past few years, I thought I was designing incentives. In reality, I was solving a harder question: <span>where should the next dollar go to create the most long-term value?</span>
+</div>
+
+<section class="section">
+  <div class="section-title"><div class="no">1</div><h2>What problem have I actually been solving?</h2></div>
+  <div class="card">
+    <p>My work sat across growth, monetisation and creator incentives. On the surface, the tools were missions, rewards, subsidies, creator progression and revenue programs.</p>
+    <p>But underneath, every decision came back to the same marketplace question:</p>
+    <p><b>Given a fixed budget, which users should we invest in, which behaviours should we encourage, and how do we know the investment created incremental value?</b></p>
+    <div class="flow">
+      <div class="step">Limited budget</div><div class="arrow">→</div>
+      <div class="step">Different user response</div><div class="arrow">→</div>
+      <div class="step">Behaviour change</div><div class="arrow">→</div>
+      <div class="step">Incremental value</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title"><div class="no">2</div><h2>How I spent money: what a $3M budget taught me</h2></div>
+  <div class="grid3">
+    <div class="card">
+      <div class="label">Budget ownership</div>
+      <div class="metric">$1M → $3M</div>
+      <p>The budget under my ownership expanded because programs demonstrated incremental ROI. The goal was not to spend more; it was to prove where additional spend deserved to go.</p>
+    </div>
+    <div class="card">
+      <div class="label">Long-term return</div>
+      <div class="metric">0.98x → 2.2x</div>
+      <p>Some programs looked weak in the first window, but delivered strong long-term return through retention, monetisation and creator progression.</p>
+    </div>
+    <div class="card">
+      <div class="label">Behaviour change</div>
+      <div class="metric">0.2% → 5%</div>
+      <p>Completion improved by changing target selection, task design, feedback loops and incentives — not simply by increasing reward size.</p>
+    </div>
+  </div>
+  <div class="lesson"><b>Lesson #1: Not all growth is equal.</b><br>Growth without incrementality is simply spend.</div>
+  <div class="lesson"><b>Lesson #2: Short-term metrics can lie.</b><br>The objective is durable behaviour change, not temporary activity.</div>
+  <div class="lesson"><b>Lesson #3: Not everyone is worth subsidising.</b><br>The most important allocation decision is often deciding who not to invest in.</div>
+</section>
+
+<section class="section">
+  <div class="section-title"><div class="no">3</div><h2>If I joined Wolt: how I would approach Consumer Pricing</h2></div>
+  <div class="card">
+    <p>Many pricing discussions start with: <b>what price should we charge?</b></p>
+    <p>I would start with: <b>what behaviour are we trying to create?</b></p>
+    <p>Because pricing is not only about revenue capture. It shapes ordering frequency, Wolt+ retention, courier utilisation, marketplace density, ETA reliability and long-term contribution.</p>
+  </div>
+
+  <div class="grid3">
+    <div class="card">
+      <h3>1. Who is worth defending?</h3>
+      <p>Segment customers by LTV, price sensitivity, Wolt+ status, order habit and churn risk. The priority is high-LTV users an entrant can actually tempt.</p>
+    </div>
+    <div class="card">
+      <h3>2. Where is spend worth it?</h3>
+      <p>Clear the market locally, by zone and time slot. Subsidy should go where it protects density, not where it only buys low-retention volume.</p>
+    </div>
+    <div class="card">
+      <h3>3. When do we stop?</h3>
+      <p>Set kill criteria before launch. If retention or frequency does not hold after subsidy ends, the spend created a bubble, not value.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h3>My working thesis for Wolt</h3>
+    <p><b>Do not blanket-match a subsidising entrant.</b> Defend the high-LTV core, protect Wolt+ retention, preserve courier density, and let low-retention price-only volume go.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title"><div class="no">4</div><h2>External case: what China’s food-delivery battle taught me</h2></div>
+
+  <div class="card">
+    <p>China made the same allocation problem more extreme: several well-funded platforms used consumer discounts, merchant subsidies and courier incentives at the same time. Reuters reported that Alibaba, JD.com and Meituan pledged <b>$28bn</b> in instant-retail subsidies in 2025, while S&P Global analysts later estimated at least <b>RMB 160bn</b> of spending over 12–18 months to defend or grow share.</p>
+    <p>The important learning was not that subsidies are useless. The learning was that <b>subsidies only matter if they convert into retained frequency, better density, or structural unit-economics advantage.</b></p>
+    <div class="source">Sources: Reuters, S&P Global via Reuters, Financial Times summaries.</div>
+  </div>
+
+  <div class="grid4">
+    <div class="card">
+      <div class="label">Spend intensity</div>
+      <div class="metric smallm">$28bn</div>
+      <p class="small">Pledged subsidies across Alibaba, JD.com and Meituan in instant retail.</p>
+    </div>
+    <div class="card">
+      <div class="label">Expected spend</div>
+      <div class="metric smallm">RMB 160bn+</div>
+      <p class="small">Estimated spend over 12–18 months to defend or grow share.</p>
+    </div>
+    <div class="card">
+      <div class="label">Regulatory signal</div>
+      <div class="metric smallm">Price war</div>
+      <p class="small">Regulators criticised cutthroat competition and deflationary pressure.</p>
+    </div>
+    <div class="card">
+      <div class="label">Strategic lesson</div>
+      <div class="metric smallm">Retention</div>
+      <p class="small">The test is what remains after subsidy withdrawal.</p>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>What happened</th><th>What I would measure</th><th>My takeaway for Wolt</th></tr>
+    <tr>
+      <td><b>Players bought order volume quickly</b></td>
+      <td>First order, repeat order, 30/60/90-day retained frequency</td>
+      <td class="warn">Order share is not enough; retained frequency is the real signal</td>
+    </tr>
+    <tr>
+      <td><b>Subsidy created pressure on profits</b></td>
+      <td>Contribution per order, cost per retained user, subsidy payback window</td>
+      <td class="bad">A price war can destroy category margin if spend is not targeted</td>
+    </tr>
+    <tr>
+      <td><b>Operations became the hidden battleground</b></td>
+      <td>ETA, courier utilisation, batching, cancellation rate, zone density</td>
+      <td class="good">Density and reliability are harder to copy than a coupon</td>
+    </tr>
+    <tr>
+      <td><b>Regulators pushed back</b></td>
+      <td>Merchant burden, worker impact, consumer transparency</td>
+      <td class="blue">Pricing needs commercial, operational and regulatory guardrails</td>
+    </tr>
+  </table>
+
+  <div class="lesson"><b>Market share can be bought. Density cannot.</b><br><b>Orders can be bought. Habits cannot.</b><br><b>Coupons can move demand. They do not automatically create loyalty.</b></div>
+</section>
+
+<section class="section">
+  <div class="section-title"><div class="no">5</div><h2>The tech/data capability I would bring</h2></div>
+
+  <div class="card">
+    <p>My strength is not only setting a commercial strategy. It is turning a marketplace problem into a measurable system: cohort definition, experiment design, metric hierarchy, product configuration, dashboarding and decision rules.</p>
+  </div>
+
+  <div class="grid3">
+    <div class="tech">
+      <h3>1. Instrument the decision</h3>
+      <p>Translate pricing or incentive strategy into observable events: eligibility, exposure, action, conversion, spend, contribution and post-period retention.</p>
+      <div class="chips"><span class="chip">event taxonomy</span><span class="chip">cohort logic</span><span class="chip">metric tree</span></div>
+    </div>
+    <div class="tech">
+      <h3>2. Build testable systems</h3>
+      <p>Use holdouts, A/B tests and zone-hour rotations to distinguish true lift from seasonality, campaign noise and natural cohort drift.</p>
+      <div class="chips"><span class="chip">holdout</span><span class="chip">rotation test</span><span class="chip">sample size</span></div>
+    </div>
+    <div class="tech">
+      <h3>3. Productise allocation</h3>
+      <p>Move from one-off campaigns to configurable rules: who is eligible, what price/subsidy they see, when it stops, and how ROI is read.</p>
+      <div class="chips"><span class="chip">rule engine</span><span class="chip">budget caps</span><span class="chip">kill criteria</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>What this looks like in practice</h3>
+    <table>
+      <tr><th>Layer</th><th>Questions</th><th>Output</th></tr>
+      <tr><td><b>Data layer</b></td><td>Who saw what price/subsidy, when, where and under what marketplace condition?</td><td>Clean exposure table by user × zone × time</td></tr>
+      <tr><td><b>Model layer</b></td><td>Which cohorts have higher LTV, higher elasticity and higher risk of churn?</td><td>Cohort score / uplift score / defend priority</td></tr>
+      <tr><td><b>Experiment layer</b></td><td>What is incremental vs organic? Is the result statistically readable?</td><td>Lift, confidence, power, payback</td></tr>
+      <tr><td><b>Product layer</b></td><td>Can we configure the strategy without manual rebuilds market by market?</td><td>Rules, thresholds, budget caps, localisation</td></tr>
+      <tr><td><b>Decision layer</b></td><td>Should we scale, iterate, or stop?</td><td>Scale / monitor / cut recommendation</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="analysis">
+  <div class="section-title"><div class="no">6</div><h2>How I would actually take data, calculate, and decide</h2></div>
+
+  <div class="card">
+    <h3>A. Start with a cohort-level P&L view</h3>
+    <p>I would avoid judging pricing or subsidy decisions only on gross order growth. I would first build a cohort-level contribution view:</p>
+    <div class="formula">
+<span class="g">Cohort LTV</span> = margin per order × order frequency × expected lifetime<br>
+<span class="g">Incremental value</span> = LTV with intervention − LTV without intervention<br>
+<span class="g">Decision rule</span> = invest while marginal subsidy ≤ incremental LTV protected
+    </div>
+    <p class="small">This is the same logic I used in incentive allocation: the spend is justified only if it creates incremental long-term value.</p>
+  </div>
+
+  <div class="card">
+    <h3>B. Read elasticity by segment, not as one average</h3>
+    <p>A single platform-level elasticity number is too blunt. I would calculate response curves by customer cohort, city, zone, time slot and order occasion.</p>
+    <table>
+      <tr><th>Segment</th><th>Expected pricing response</th><th>Pricing action</th></tr>
+      <tr><td>High LTV + low price sensitivity</td><td>Retains with light intervention</td><td class="good">Protect margin; avoid over-subsidy</td></tr>
+      <tr><td>High LTV + high price sensitivity</td><td>At risk under entrant subsidy</td><td class="good">Defend selectively</td></tr>
+      <tr><td>Low LTV + high price sensitivity</td><td>Moves only for discounts</td><td class="bad">Do not chase</td></tr>
+      <tr><td>New users in high-density zones</td><td>Potential to form habit</td><td class="warn">Test acquisition subsidy with strict retention read</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>C. Build a marketplace-aware pricing model</h3>
+    <p>Food delivery pricing cannot be optimised only at customer level. The model needs to know the local operational state.</p>
+    <div class="formula">
+<span class="g">Maximise</span> long-term contribution(z, t, cohort)<br>
+<span class="g">Subject to</span>: ETA floor, fulfillment floor, courier supply, budget cap, regulatory guardrails<br><br>
+<span class="b">Inputs</span>: customer LTV, price elasticity, Wolt+ status, distance, basket size, courier utilisation, merchant density, competitor pressure<br>
+<span class="y">Output</span>: price / fee / subsidy / no-action decision by cohort × zone × time
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>D. Test through holdouts and rotational experiments</h3>
+    <p>In my own work, I used holdouts, A/B testing, significance testing, sample-size estimation and rotational experiments to avoid acting on noise. For Wolt, I would apply the same discipline:</p>
+    <div class="grid2">
+      <div class="card" style="margin:0">
+        <h3>Holdout design</h3>
+        <p>Keep comparable customers, zones or time windows untreated so we can separate true incrementality from organic trend.</p>
+      </div>
+      <div class="card" style="margin:0">
+        <h3>Rotation design</h3>
+        <p>Rotate pricing or subsidy treatment by zone-hour where operationally feasible, especially for food delivery where local supply-demand balance changes quickly.</p>
+      </div>
+    </div>
+    <div class="chips">
+      <span class="chip">holdout</span><span class="chip">A/B test</span><span class="chip">sample-size estimation</span><span class="chip">significance read</span><span class="chip">zone-hour rotation</span><span class="chip">post-subsidy retention</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>E. Decide using a defend / monitor / cede matrix</h3>
+    <table>
+      <tr><th style="width:22%"></th><th>Low price sensitivity</th><th>High price sensitivity</th></tr>
+      <tr><td><b>High LTV</b></td><td class="good">Hold: protect margin, use Wolt+ and service quality</td><td class="good">Defend: targeted subsidy, retention hooks, zone-level monitoring</td></tr>
+      <tr><td><b>Low LTV</b></td><td class="warn">Monitor: avoid unnecessary discounting</td><td class="bad">Cede: do not chase mercenary volume</td></tr>
+    </table>
+    <p class="small">The most dangerous mistake is spending defensive budget on the bottom-right cell: users who are expensive to keep and unlikely to retain.</p>
+  </div>
+</section>
+
+<div class="final">
+  The tools are different. The question is not.<br><br>
+  <b>Where should the next dollar go to create the most long-term value?</b><br><br>
+  That is the problem I have spent the last few years solving — and the lens I would bring to consumer pricing at Wolt.
+</div>
+
+</div>
+</body>
+</html>
