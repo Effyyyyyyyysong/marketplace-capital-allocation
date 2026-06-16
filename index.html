@@ -1,349 +1,1001 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Marketplace Capital Allocation & Pricing - Effy Song</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where Should the Next Dollar Go? · Effy Song</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
+  --paper:#F6F7F4;
+  --paper2:#FFFFFF;
+  --ink:#14171A;
+  --ink2:#343B41;
+  --muted:#6F777E;
+  --rule:#E0E4DE;
+  --rule2:#C6CCC3;
   --wolt:#00C2A8;
-  --wolt-dark:#009E8A;
-  --navy:#16324F;
-  --ink:#1F2933;
-  --muted:#637381;
-  --bg:#F7FAFB;
-  --card:#FFFFFF;
-  --line:#E4ECF1;
-  --soft:#EAFBF8;
-  --amber:#FFF6E5;
-  --red:#FDEDED;
-  --blue:#EAF4FF;
+  --wolt2:#008F7E;
+  --profit:#157F5B;
+  --profit-bg:#EAF3EE;
+  --war:#B23A2E;
+  --war-bg:#F6EAE7;
+  --gold:#9A7B1F;
+  --gold-bg:#F4EFE0;
+  --blue:#2C5F84;
+  --blue-bg:#E7EEF4;
+  --slate:#EEF1F0;
+  --maxw:1140px;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  margin:0;background:var(--bg);color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  line-height:1.62;-webkit-font-smoothing:antialiased;
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased;
 }
-.wrap{max-width:1160px;margin:0 auto;padding:52px 38px 72px}
-.hero{
-  background:linear-gradient(135deg,#ffffff 0%,#F1FFFC 100%);
-  border:1px solid var(--line);border-radius:28px;padding:46px 48px;
-  margin-bottom:30px;position:relative;overflow:hidden;
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 30px}
+h1,h2,h3,h4{font-family:"Newsreader",Georgia,serif;font-weight:500;letter-spacing:-0.01em;line-height:1.12}
+p{margin:0 0 17px}
+b,strong{font-weight:750;color:var(--ink)}
+.small{font-size:13.5px;color:var(--muted)}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.h-rule{height:1px;background:var(--rule);border:0;margin:54px 0}
+
+/* Goldman-style masthead: editorial, concise, insight-led */
+.mast{padding:74px 0 48px;border-bottom:1px solid var(--rule2)}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--wolt2)}
+.mast h1{font-size:clamp(42px,6.6vw,76px);margin:20px 0 0;max-width:17ch}
+.mast h1 em{font-style:italic;color:var(--wolt2)}
+.mast .sub{margin-top:24px;max-width:72ch;font-size:18.5px;color:var(--ink2)}
+.by{margin-top:30px;font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 22px}
+.by b{color:var(--ink);font-weight:500}
+
+/* GS-style key takeaway bullets */
+.key-takeaways{
+  margin-top:36px;background:#fff;border:1px solid var(--rule);border-radius:4px;padding:24px 26px;
+  display:grid;grid-template-columns:34px 1fr;gap:16px;max-width:880px
 }
-.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;background:rgba(0,194,168,.13)}
-.kicker{color:var(--wolt-dark);font-weight:850;letter-spacing:.08em;text-transform:uppercase;font-size:12px;margin-bottom:12px}
-h1{font-size:46px;line-height:1.05;margin:0 0 14px;color:var(--navy);letter-spacing:-1.1px;max-width:850px}
-.subtitle{font-size:19px;color:var(--muted);max-width:910px;margin:0}
-.byline{font-size:13px;color:#8a98a8;margin-top:22px}
-.nav{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:20px 0 38px}
-.nav div{background:white;border:1px solid var(--line);border-radius:14px;padding:13px 14px;font-size:12px;color:var(--muted)}
-.nav b{display:block;color:var(--navy);font-size:13px;margin-bottom:3px}
-.section{margin:44px 0}
-.section-title{display:flex;align-items:center;gap:13px;margin:0 0 18px}
-.no{width:32px;height:32px;border-radius:50%;background:var(--wolt);color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;flex:none}
-h2{font-size:26px;line-height:1.2;margin:0;color:var(--navy);letter-spacing:-.35px}
-h3{font-size:18px;margin:0 0 8px;color:var(--navy)}
-p{margin:0 0 12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 26px;margin:16px 0;box-shadow:0 1px 0 rgba(22,50,79,.03)}
-.quote{background:var(--navy);color:white;border-radius:22px;padding:30px 34px;font-size:27px;line-height:1.32;font-weight:760;letter-spacing:-.3px;margin:22px 0}
-.quote span{color:#8FF1DE}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.metric{font-size:38px;line-height:1;font-weight:850;color:var(--wolt-dark);letter-spacing:-.8px;margin-bottom:8px}
-.metric.smallm{font-size:30px}
-.label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:8px}
-.lesson{background:var(--soft);border-left:5px solid var(--wolt);border-radius:14px;padding:17px 20px;margin:14px 0;color:var(--navy)}
-.lesson b{font-size:16px}
-.flow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:20px 0 4px}
-.flow .step{flex:1;background:white;border:1px solid var(--line);border-radius:16px;padding:16px 14px;text-align:center;color:var(--navy);font-weight:760;font-size:13px;min-height:74px;display:flex;align-items:center;justify-content:center}
-.arrow{color:var(--wolt-dark);font-weight:900}
-table{width:100%;border-collapse:collapse;margin:12px 0 4px;font-size:13px}
-th,td{border:1px solid var(--line);padding:11px 12px;text-align:left;vertical-align:top}
-th{background:var(--navy);color:white;font-size:12px}
-td.good{background:var(--soft);font-weight:700;color:var(--navy)}
-td.warn{background:var(--amber)}
-td.bad{background:var(--red)}
-td.blue{background:var(--blue)}
-.small{font-size:12.5px;color:var(--muted)}
-.chips{margin-top:8px}
-.chip{display:inline-block;padding:5px 10px;border-radius:18px;background:white;border:1px solid var(--line);color:var(--muted);font-size:12px;margin:3px 3px 0 0}
-.analysis{border-top:2px dashed #C7D8E2;margin-top:50px;padding-top:28px}
-.formula{background:#102A43;color:#EAFBF8;border-radius:16px;padding:20px 22px;font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:13px;line-height:1.8;overflow-x:auto;margin:13px 0}
+.kt-icon{
+  width:34px;height:34px;border:1px solid var(--wolt);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;color:var(--wolt2);font-weight:800
+}
+.key-takeaways ul{margin:0;padding-left:18px}
+.key-takeaways li{margin:0 0 10px;color:var(--ink2)}
+.key-takeaways li:last-child{margin-bottom:0}
+
+/* navigation */
+.nav{position:sticky;top:0;z-index:10;background:rgba(246,247,244,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.nav .wrap{display:flex;gap:8px;overflow:auto;padding-top:12px;padding-bottom:12px}
+.nav a{white-space:nowrap;text-decoration:none;color:var(--muted);border:1px solid var(--rule);background:#fff;border-radius:999px;padding:7px 12px;font-size:12px;font-family:"IBM Plex Mono",monospace}
+.nav a:hover{color:var(--wolt2);border-color:var(--wolt)}
+
+/* sections */
+.part{padding:62px 0 0}
+.part-tag{display:inline-flex;align-items:baseline;gap:14px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.part-tag .n{font-size:15px;color:var(--ink)}
+.part h2{font-size:clamp(30px,4.1vw,46px);margin:16px 0 0;max-width:24ch}
+.lede{margin:22px 0 0;font-size:19px;color:var(--ink2);max-width:74ch}
+
+/* Q&A editorial blocks */
+.qa{
+  display:grid;grid-template-columns:300px 1fr;gap:42px;margin-top:34px;padding-top:34px;border-top:1px solid var(--rule)
+}
+.qa-q{font-family:"Newsreader",Georgia,serif;font-size:25px;line-height:1.18;color:var(--ink)}
+.qa-a{color:var(--ink2)}
+.qa-a p:last-child{margin-bottom:0}
+
+.callout{background:var(--ink);color:#F3F4EF;border-radius:6px;padding:30px 32px;margin-top:36px}
+.callout .kicker{color:#AEB7AF}
+.callout p{font-family:"Newsreader",serif;font-size:23px;line-height:1.4;margin:0;color:#fff}
+.callout p em{font-style:italic;color:#7FD4B0}
+
+/* card */
+.card{background:var(--paper2);border:1px solid var(--rule);border-radius:5px;margin-top:28px;overflow:hidden}
+.card.pad{padding:26px}
+.card-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;padding:22px 26px 18px;border-bottom:1px solid var(--rule)}
+.co{font-family:"Newsreader",serif;font-size:25px;font-weight:600}
+.fy{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--muted)}
+.role{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:2px;white-space:nowrap}
+.role.proof{background:var(--profit-bg);color:var(--profit)}
+.role.parent{background:var(--blue-bg);color:var(--blue)}
+.role.counter{background:var(--war-bg);color:var(--war)}
+.role.wolt{background:#E6F8F4;color:var(--wolt2)}
+.card-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+
+/* refined chart system */
+.chart-card{background:#fff;border:1px solid var(--rule);border-radius:5px;padding:24px 26px;margin-top:28px}
+.chart-title{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--rule);padding-bottom:14px;margin-bottom:20px}
+.chart-title h3{font-size:25px;margin:0}
+.chart-title .source{font-family:"IBM Plex Mono",monospace;color:var(--muted);font-size:11.5px}
+.bars{display:grid;gap:15px}
+.bar-row{display:grid;grid-template-columns:145px 1fr 80px;gap:14px;align-items:center}
+.bar-label{font-weight:650;color:var(--ink2)}
+.bar-track{height:24px;background:#EEF1F0;border-radius:999px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:999px;background:var(--wolt);position:relative}
+.bar-fill.profit{background:var(--profit)}
+.bar-fill.war{background:var(--war)}
+.bar-fill.blue{background:var(--blue)}
+.bar-val{text-align:right;font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink)}
+.caption{font-size:13px;color:var(--muted);margin-top:14px}
+
+/* icon system */
+.icon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
+.icon-card{background:#fff;border:1px solid var(--rule);border-radius:5px;padding:20px;min-height:178px}
+.icon{
+  width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  background:#E6F8F4;border:1px solid rgba(0,194,168,.35)
+}
+.icon svg{width:23px;height:23px;stroke:var(--wolt2);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.icon-card h4{font-family:"Inter",system-ui,sans-serif;font-size:14px;font-weight:800;margin:0 0 8px;color:var(--ink)}
+.icon-card p{font-size:13.5px;color:var(--ink2);margin:0}
+
+/* grids and metrics */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+.stat{background:var(--paper2);border:1px solid var(--rule);border-top:3px solid var(--wolt);border-radius:5px;padding:20px 20px 22px}
+.stat .name{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--wolt2)}
+.stat .fig{font-family:"Newsreader",serif;font-size:30px;font-weight:600;margin:8px 0 6px;line-height:1.1}
+.stat .note{font-size:13.5px;color:var(--ink2)}
+.lesson{background:#EAFBF8;border-left:5px solid var(--wolt);border-radius:5px;padding:17px 20px;margin:16px 0;color:#123C35}
+.lesson b{font-weight:700;color:var(--ink)}
+.flow{display:flex;align-items:stretch;gap:8px;margin:28px 0 8px}
+.step{flex:1;background:#fff;border:1px solid var(--rule);border-radius:5px;padding:16px;text-align:center;font-weight:700;color:var(--ink)}
+.arrow{align-self:center;color:var(--wolt2);font-weight:800}
+
+/* screenshot + ledger cards */
+.shot{border-right:1px solid var(--rule);padding:26px;background:repeating-linear-gradient(135deg,#FbFcFa,#FbFcFa 9px,#F4F6F1 9px,#F4F6F1 18px)}
+.shot-frame{border:1.5px dashed var(--rule2);border-radius:4px;background:rgba(255,255,255,.72);padding:22px 18px;height:100%;display:flex;flex-direction:column;gap:10px;justify-content:center;min-height:210px}
+.shot-label{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.shot-frame .what{font-size:14px;color:var(--ink2);line-height:1.5}
+.shot-frame .src{font-family:"IBM Plex Mono",monospace;font-size:11.5px;word-break:break-word}
+.ledger{padding:24px 26px}
+.ledger table{width:100%;border-collapse:collapse;font-family:"IBM Plex Mono",monospace}
+.ledger td{padding:7px 0;border-bottom:1px dotted var(--rule);font-size:13.5px;vertical-align:baseline}
+.ledger td.lab{color:var(--ink2);padding-right:14px}
+.ledger td.val{text-align:right;font-weight:500;white-space:nowrap}
+.ledger tr:last-child td{border-bottom:0}
+.val.pos{color:var(--profit)}
+.val.neg{color:var(--war)}
+.readout{padding:20px 26px 26px;border-top:1px solid var(--rule);grid-column:1 / -1}
+.readout .kicker{margin-bottom:8px}
+.readout p{margin:0;font-size:15.5px;color:var(--ink2)}
+.readout.green{border-left:3px solid var(--profit)}
+.readout.red{border-left:3px solid var(--war)}
+.readout.wolt{border-left:3px solid var(--wolt)}
+
+/* profit stack redesigned as vertical economics waterfall */
+.stack{margin:34px 0 8px;border:1px solid var(--rule);border-radius:5px;overflow:hidden;background:var(--paper2)}
+.layer{display:grid;grid-template-columns:170px 1fr;gap:0;border-bottom:1px solid var(--rule)}
+.layer:last-child{border-bottom:0}
+.layer .tag{padding:16px 20px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.04em;display:flex;align-items:center}
+.layer .desc{padding:16px 22px;font-size:15px;color:var(--ink2);border-left:1px solid var(--rule)}
+.layer.l-ads .tag{background:var(--profit);color:#fff}
+.layer.l-qc .tag{background:var(--profit-bg);color:var(--profit)}
+.layer.l-sub .tag{background:var(--blue-bg);color:var(--blue)}
+.layer.l-base .tag{background:#F0F1ED;color:var(--muted)}
+
+/* timelines */
+.tl-title{font-family:"Newsreader",serif;font-size:24px;font-weight:600;margin:46px 0 6px}
+.tl-sub{font-size:15px;color:var(--muted);margin-bottom:8px}
+.tl{position:relative;margin-top:26px;padding-left:30px}
+.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--rule2)}
+.ev{position:relative;padding:0 0 30px 8px}
+.ev::before{content:"";position:absolute;left:-30px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:2.5px solid var(--rule2)}
+.ev.atk::before{border-color:var(--war);background:var(--war)}
+.ev.def::before{border-color:var(--profit);background:var(--profit)}
+.ev.reg::before{border-color:var(--gold);background:var(--gold)}
+.ev .date{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.ev .ev-t{font-family:"Newsreader",serif;font-size:19px;font-weight:600;margin:3px 0 6px}
+.ev p{font-size:15px;color:var(--ink2);margin:0 0 10px}
+.moves{display:flex;flex-wrap:wrap;gap:8px}
+.mv{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.03em;padding:3px 9px;border-radius:2px}
+.mv.a{background:var(--war-bg);color:var(--war)}
+.mv.d{background:var(--profit-bg);color:var(--profit)}
+.mv.s{background:#EEF0EC;color:var(--ink2)}
+.mv.r{background:var(--gold-bg);color:var(--gold)}
+
+/* two columns */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+.duo .col{border:1px solid var(--rule);border-radius:5px;padding:24px 24px 8px;background:var(--paper2)}
+.duo .col.atk{border-top:3px solid var(--war)}
+.duo .col.def{border-top:3px solid var(--profit)}
+.duo h4{font-size:22px;font-weight:600;margin:0 0 4px}
+.duo .col.atk h4{color:var(--war)}
+.duo .col.def h4{color:var(--profit)}
+.duo .who{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.duo ol{margin:0;padding-left:20px}
+.duo li{font-size:15px;color:var(--ink2);margin-bottom:12px;padding-left:4px}
+.duo li b{color:var(--ink);font-weight:700}
+.thesis{border:1px solid var(--rule2);border-radius:5px;padding:32px;margin-top:38px;background:var(--paper2)}
+.thesis .kicker{color:var(--war)}
+.thesis h3{font-size:28px;margin:6px 0 16px}
+.thesis p{font-size:16.5px;color:var(--ink2)}
+.thesis .punch{font-family:"Newsreader",serif;font-style:italic;font-size:21px;color:var(--ink);margin-top:18px;line-height:1.4}
+
+/* director section */
+table.clean{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px;background:#fff}
+table.clean th, table.clean td{border:1px solid var(--rule);padding:12px 13px;text-align:left;vertical-align:top}
+table.clean th{background:var(--ink);color:white;font-family:"IBM Plex Mono",monospace;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+td.good{background:var(--profit-bg);color:#123C35;font-weight:600}
+td.warn{background:var(--gold-bg)}
+td.bad{background:var(--war-bg);color:#571D17}
+.formula{background:#102A43;color:#EAFBF8;border-radius:5px;padding:20px 22px;font-family:"IBM Plex Mono",monospace;font-size:13px;line-height:1.8;overflow-x:auto;margin:15px 0}
 .formula .g{color:#8FF1DE}.formula .y{color:#FFD166}.formula .b{color:#94C6FF}
-.callout{background:#ffffff;border:1px solid var(--line);border-left:6px solid var(--wolt);border-radius:18px;padding:22px 24px;margin:18px 0}
-.tech{background:#F8FBFF;border:1px solid #DCEBFF;border-radius:18px;padding:20px 22px;margin:14px 0}
-.source{font-size:11px;color:#8a98a8;margin-top:8px}
-.final{background:linear-gradient(135deg,#16324F 0%,#102A43 100%);color:white;border-radius:26px;padding:36px 40px;font-size:22px;line-height:1.45;margin-top:42px}
-.final b{color:#8FF1DE}
-@media(max-width:860px){
-  .wrap{padding:28px 18px 50px}.hero{padding:32px 24px}h1{font-size:34px}.subtitle{font-size:17px}
-  .nav,.grid4,.grid3,.grid2{grid-template-columns:1fr}.flow{flex-direction:column}.arrow{transform:rotate(90deg)}.quote{font-size:22px}
+.tech{background:#F8FBFF;border:1px solid #DCEBFF;border-radius:5px;padding:20px 22px;margin:14px 0}
+.chips{margin-top:8px}
+.chip{display:inline-block;padding:5px 10px;border-radius:18px;background:white;border:1px solid var(--rule);color:var(--muted);font-size:12px;margin:3px 3px 0 0;font-family:"IBM Plex Mono",monospace}
+
+/* footer and animation */
+footer{margin-top:72px;border-top:1px solid var(--rule2);padding:40px 0 70px}
+footer .srcs{font-size:13px;color:var(--muted);line-height:1.7}
+footer .sig{margin-top:30px;font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink2)}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+
+/* enhanced executive / chart modules */
+.exec-summary{
+  margin-top:34px;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:14px;
 }
+.belief{
+  background:#fff;
+  border:1px solid var(--rule);
+  border-radius:5px;
+  padding:20px 20px 22px;
+  min-height:190px;
+}
+.belief .num{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+  color:var(--wolt2);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+.belief h3{
+  font-family:"Newsreader",Georgia,serif;
+  font-size:25px;
+  margin:0 0 10px;
+}
+.belief p{font-size:14.5px;color:var(--ink2);margin:0}
+.line-chart{
+  background:#fff;
+  border:1px solid var(--rule);
+  border-radius:5px;
+  padding:24px 26px;
+  margin-top:28px;
+}
+.line-head{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  border-bottom:1px solid var(--rule);
+  padding-bottom:14px;
+  margin-bottom:18px;
+}
+.line-head h3{font-size:25px;margin:0}
+.line-head .source{font-family:"IBM Plex Mono",monospace;color:var(--muted);font-size:11.5px}
+.svg-chart{width:100%;height:auto;display:block}
+.axis-label{font-family:"IBM Plex Mono",monospace;font-size:11px;fill:#727A80}
+.point-label{font-family:"IBM Plex Mono",monospace;font-size:12px;fill:#14171A;font-weight:600}
+.experiment-engine{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:18px;
+  margin-top:28px;
+}
+.exp-panel{
+  background:#fff;
+  border:1px solid var(--rule);
+  border-radius:5px;
+  padding:24px 26px;
+}
+.split-row{
+  display:grid;
+  grid-template-columns:80px 1fr 90px;
+  gap:12px;
+  align-items:center;
+  margin:14px 0;
+}
+.split-label{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink)}
+.split-track{height:22px;background:#EEF1F0;border-radius:999px;overflow:hidden}
+.split-fill{height:100%;border-radius:999px;background:var(--wolt)}
+.split-fill.ctrl{background:var(--blue)}
+.split-fill.camp{background:var(--profit)}
+.split-val{text-align:right;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted)}
+.metric-tree{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-top:16px;
+}
+.metric-node{
+  background:#F8FBFF;
+  border:1px solid #DCEBFF;
+  border-radius:4px;
+  padding:12px;
+  font-size:12.5px;
+  color:var(--ink2);
+  text-align:center;
+}
+.plan90{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:28px;
+}
+.plan-card{
+  background:#fff;
+  border:1px solid var(--rule);
+  border-radius:5px;
+  padding:22px;
+  border-top:3px solid var(--wolt);
+}
+.plan-card .day{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+  color:var(--wolt2);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.plan-card h3{font-size:25px;margin:0 0 12px}
+.plan-card ul{margin:0;padding-left:18px}
+.plan-card li{font-size:14px;color:var(--ink2);margin-bottom:8px}
+
+@media(max-width:900px){
+  .qa{grid-template-columns:1fr;gap:12px}
+  .icon-grid,.grid4,.exec-summary,.plan90{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:820px){
+  .card-body,.grid3,.duo,.experiment-engine{grid-template-columns:1fr}
+  .shot{border-right:0;border-bottom:1px solid var(--rule)}
+  .flow{flex-direction:column}.arrow{transform:rotate(90deg)}
+  .layer{grid-template-columns:1fr}.layer .desc{border-left:0;border-top:1px solid var(--rule)}
+  .bar-row{grid-template-columns:1fr}.bar-val{text-align:left}
+}
+@media(max-width:560px){
+  .icon-grid,.grid4,.exec-summary,.plan90{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<section class="hero">
-  <div class="kicker">A personal strategy memo</div>
-  <h1>How I Think About Capital Allocation in Marketplaces</h1>
-  <p class="subtitle">Lessons from managing a $3M incentive budget, how I would approach Consumer Pricing at Wolt, and what I learned from multi-player food-delivery competition.</p>
-  <div class="byline">Effy Song · effysong0723@gmail.com · linkedin.com/in/effy-song-a8778b1a5</div>
-</section>
+<header class="mast" id="top">
+  <div class="wrap">
+    <div class="eyebrow">Strategy memo · Consumer Pricing · Marketplace Economics</div>
+    <h1>Where should the next dollar <em>go?</em></h1>
+    <p class="sub">A story about capital allocation in marketplaces: what I learned from managing a $3M incentive budget, why food delivery profit is not in the delivery fee, what price wars actually teach, and how I would approach Consumer Pricing at Wolt.</p>
+    <div class="key-takeaways">
+      <div class="kt-icon">3</div>
+      <ul>
+        <li><strong>Delivery is the traffic layer, not the profit pool.</strong> Durable margin comes from ads, subscription, quick commerce and density.</li>
+        <li><strong>Price wars test capital discipline.</strong> Matching everything destroys margin; refusing without a moat loses the market.</li>
+        <li><strong>The job of pricing is allocation.</strong> Defend high-LTV cohorts, subscription habit and dense zones — let mercenary volume walk.</li>
+      </ul>
+    </div>
+    <div class="by">
+      <span><b>Effy Song</b></span>
+      <span>effysong0723@gmail.com</span>
+      <span>linkedin.com/in/effy-song-a8778b1a5</span>
+    </div>
+  </div>
+</header>
 
-<div class="nav">
-  <div><b>01</b>Problem I solve</div>
-  <div><b>02</b>How I spent money</div>
-  <div><b>03</b>If I joined Wolt</div>
-  <div><b>04</b>China learning</div>
-  <div><b>05</b>Tech / data ability</div>
-  <div><b>06</b>How I would calculate</div>
-</div>
+<nav class="nav">
+  <div class="wrap">
+    <a href="#executive-summary">00 Summary</a>
+    <a href="#story">01 The origin</a>
+    <a href="#budget">02 What I learned</a>
+    <a href="#profit">03 Profit anatomy</a>
+    <a href="#wolt">04 Wolt implication</a>
+    <a href="#war">05 Price wars</a>
+    <a href="#director">06 If I were Director</a>
+    <a href="#first90">07 First 90 days</a>
+  </div>
+</nav>
 
-<div class="quote">
-  For the past few years, I thought I was designing incentives. In reality, I was solving a harder question: <span>where should the next dollar go to create the most long-term value?</span>
-</div>
+<section class="part" id="executive-summary">
+  <div class="wrap">
+    <div class="part-tag reveal"><span class="n">00</span><span>Executive summary</span></div>
+    <h2 class="reveal">Three things I believe about consumer pricing in marketplaces</h2>
+    <p class="lede reveal">Before the analysis, the operating philosophy is simple: consumer pricing is not a coupon function or a fee-setting function. It is the capital-allocation layer of a three-sided marketplace.</p>
 
-<section class="section">
-  <div class="section-title"><div class="no">1</div><h2>What problem have I actually been solving?</h2></div>
-  <div class="card">
-    <p>My work sat across growth, monetisation and creator incentives. On the surface, the tools were missions, rewards, subsidies, creator progression and revenue programs.</p>
-    <p>But underneath, every decision came back to the same marketplace question:</p>
-    <p><b>Given a fixed budget, which users should we invest in, which behaviours should we encourage, and how do we know the investment created incremental value?</b></p>
-    <div class="flow">
-      <div class="step">Limited budget</div><div class="arrow">→</div>
-      <div class="step">Different user response</div><div class="arrow">→</div>
-      <div class="step">Behaviour change</div><div class="arrow">→</div>
-      <div class="step">Incremental value</div>
+    <div class="exec-summary reveal">
+      <div class="belief">
+        <div class="num">Belief 01</div>
+        <h3>Pricing is capital allocation.</h3>
+        <p>The real decision is not “what price should we charge?” but “which behaviour is worth buying, defending, or letting go?”</p>
+      </div>
+      <div class="belief">
+        <div class="num">Belief 02</div>
+        <h3>Share can be bought. Density cannot.</h3>
+        <p>A competitor can subsidise demand quickly. It is much harder to replicate courier density, merchant depth, subscription habit and service reliability.</p>
+      </div>
+      <div class="belief">
+        <div class="num">Belief 03</div>
+        <h3>Optimise lifetime value, not order margin.</h3>
+        <p>The best price is sometimes not the one that maximises the current order; it is the one that grows retained frequency and downstream profit pools.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="section-title"><div class="no">2</div><h2>How I spent money: what a $3M budget taught me</h2></div>
-  <div class="grid3">
-    <div class="card">
-      <div class="label">Budget ownership</div>
-      <div class="metric">$1M → $3M</div>
-      <p>The budget under my ownership expanded because programs demonstrated incremental ROI. The goal was not to spend more; it was to prove where additional spend deserved to go.</p>
-    </div>
-    <div class="card">
-      <div class="label">Long-term return</div>
-      <div class="metric">0.98x → 2.2x</div>
-      <p>Some programs looked weak in the first window, but delivered strong long-term return through retention, monetisation and creator progression.</p>
-    </div>
-    <div class="card">
-      <div class="label">Behaviour change</div>
-      <div class="metric">0.2% → 5%</div>
-      <p>Completion improved by changing target selection, task design, feedback loops and incentives — not simply by increasing reward size.</p>
-    </div>
-  </div>
-  <div class="lesson"><b>Lesson #1: Not all growth is equal.</b><br>Growth without incrementality is simply spend.</div>
-  <div class="lesson"><b>Lesson #2: Short-term metrics can lie.</b><br>The objective is durable behaviour change, not temporary activity.</div>
-  <div class="lesson"><b>Lesson #3: Not everyone is worth subsidising.</b><br>The most important allocation decision is often deciding who not to invest in.</div>
-</section>
+<section class="part" id="story">
+  <div class="wrap">
+    <div class="part-tag reveal"><span class="n">01</span><span>The origin</span></div>
+    <h2 class="reveal">I did not start from pricing. I started from a simpler question: why does the same dollar work differently on different users?</h2>
+    <p class="lede reveal">For a long time, I thought I was doing growth. Campaigns, missions, incentives, subsidies, creator progression. But when you manage real budget at scale, the job quickly becomes less about launching activity and more about deciding <strong>which behaviour is worth buying.</strong></p>
 
-<section class="section">
-  <div class="section-title"><div class="no">3</div><h2>If I joined Wolt: how I would approach Consumer Pricing</h2></div>
-  <div class="card">
-    <p>Many pricing discussions start with: <b>what price should we charge?</b></p>
-    <p>I would start with: <b>what behaviour are we trying to create?</b></p>
-    <p>Because pricing is not only about revenue capture. It shapes ordering frequency, Wolt+ retention, courier utilisation, marketplace density, ETA reliability and long-term contribution.</p>
-  </div>
+    <div class="qa reveal">
+      <div class="qa-q">What changed the way I think?</div>
+      <div class="qa-a">
+        <p>Two programs can spend the same amount. One creates a spike that disappears. The other creates retained behaviour.</p>
+        <p>That is when growth stops being a campaign problem and becomes a capital-allocation problem.</p>
+      </div>
+    </div>
 
-  <div class="grid3">
-    <div class="card">
-      <h3>1. Who is worth defending?</h3>
-      <p>Segment customers by LTV, price sensitivity, Wolt+ status, order habit and churn risk. The priority is high-LTV users an entrant can actually tempt.</p>
+    <div class="flow reveal">
+      <div class="step">Money spent</div><div class="arrow">→</div>
+      <div class="step">Behaviour changed</div><div class="arrow">→</div>
+      <div class="step">Value retained</div><div class="arrow">→</div>
+      <div class="step">Capital justified</div>
     </div>
-    <div class="card">
-      <h3>2. Where is spend worth it?</h3>
-      <p>Clear the market locally, by zone and time slot. Subsidy should go where it protects density, not where it only buys low-retention volume.</p>
-    </div>
-    <div class="card">
-      <h3>3. When do we stop?</h3>
-      <p>Set kill criteria before launch. If retention or frequency does not hold after subsidy ends, the spend created a bubble, not value.</p>
-    </div>
-  </div>
 
-  <div class="callout">
-    <h3>My working thesis for Wolt</h3>
-    <p><b>Do not blanket-match a subsidising entrant.</b> Defend the high-LTV core, protect Wolt+ retention, preserve courier density, and let low-retention price-only volume go.</p>
+    <div class="lesson reveal"><b>The real question was never “how much incentive should we give?”</b><br>It was: who is worth investing in, what behaviour are we buying, and how do we know it would not have happened anyway?</div>
   </div>
 </section>
 
-<section class="section">
-  <div class="section-title"><div class="no">4</div><h2>External case: what China’s food-delivery battle taught me</h2></div>
+<section class="part" id="budget">
+  <div class="wrap">
+    <div class="part-tag reveal"><span class="n">02</span><span>What I learned spending money</span></div>
+    <h2 class="reveal">I was not spending budget. I was buying behaviour.</h2>
+    <p class="lede reveal">Across a 1.6M creator base, I managed incentive allocation to roughly 16,000 creators. My budget grew from ~$1M to ~$3M not because we spent more aggressively, but because the system became more measurable: holdouts, A/B tests, significance checks, sample-size planning, and rotational experiments.</p>
 
-  <div class="card">
-    <p>China made the same allocation problem more extreme: several well-funded platforms used consumer discounts, merchant subsidies and courier incentives at the same time. Reuters reported that Alibaba, JD.com and Meituan pledged <b>$28bn</b> in instant-retail subsidies in 2025, while S&P Global analysts later estimated at least <b>RMB 160bn</b> of spending over 12–18 months to defend or grow share.</p>
-    <p>The important learning was not that subsidies are useless. The learning was that <b>subsidies only matter if they convert into retained frequency, better density, or structural unit-economics advantage.</b></p>
-    <div class="source">Sources: Reuters, S&P Global via Reuters, Financial Times summaries.</div>
+    <div class="chart-card reveal">
+      <div class="chart-title">
+        <h3>Three operating lessons from incentive allocation</h3>
+        <div class="source">Effy operating experience</div>
+      </div>
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-label">Budget ownership</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          <div class="bar-val">$1M → $3M</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Long-term ROI</div>
+          <div class="bar-track"><div class="bar-fill profit" style="width:86%"></div></div>
+          <div class="bar-val">2.2x</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Short-term ROI</div>
+          <div class="bar-track"><div class="bar-fill blue" style="width:39%"></div></div>
+          <div class="bar-val">0.98x</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Completion lift</div>
+          <div class="bar-track"><div class="bar-fill profit" style="width:72%"></div></div>
+          <div class="bar-val">0.2% → 5%</div>
+        </div>
+      </div>
+      <div class="caption">The key lesson: budget growth was earned through proof, not spend. Short-term ROI was useful, but long-term retained behaviour was the real decision metric.</div>
+    </div>
+
+
+    <div class="line-chart reveal">
+      <div class="line-head">
+        <h3>ROI should be read over the right horizon</h3>
+        <div class="source">Illustrative from incentive portfolio learning</div>
+      </div>
+      <svg class="svg-chart" viewBox="0 0 900 310" role="img" aria-label="ROI evolution chart">
+        <line x1="70" y1="245" x2="850" y2="245" stroke="#C9CEC6" stroke-width="1"/>
+        <line x1="70" y1="50" x2="70" y2="245" stroke="#C9CEC6" stroke-width="1"/>
+        <text x="40" y="248" class="axis-label">0x</text>
+        <text x="35" y="166" class="axis-label">1x</text>
+        <text x="35" y="83" class="axis-label">2x</text>
+        <line x1="70" y1="165" x2="850" y2="165" stroke="#E1E4DE" stroke-dasharray="5 5"/>
+        <path d="M100 168 C220 172, 300 160, 400 145 S590 100, 770 72" fill="none" stroke="#157F5B" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="100" cy="168" r="6" fill="#2C5F84"/>
+        <circle cx="770" cy="72" r="6" fill="#157F5B"/>
+        <text x="78" y="145" class="point-label">0.98x</text>
+        <text x="748" y="48" class="point-label">2.2x</text>
+        <text x="88" y="278" class="axis-label">First window</text>
+        <text x="725" y="278" class="axis-label">Longer horizon</text>
+        <text x="285" y="132" class="axis-label">retention + progression + monetisation</text>
+      </svg>
+      <div class="caption">A short-term read can understate value if the intervention changes retained behaviour. This is why I would judge pricing/subsidy decisions on cohort LTV and post-period frequency, not only first-window revenue.</div>
+    </div>
+
+    <div class="icon-grid reveal">
+      <div class="icon-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M7 16l4-5 4 3 5-8"/></svg></div>
+        <h4>Not all growth is equal</h4>
+        <p>Growth without incrementality is simply spend.</p>
+      </div>
+      <div class="icon-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg></div>
+        <h4>Short-term ROI can lie</h4>
+        <p>The objective is durable behaviour change, not temporary activity.</p>
+      </div>
+      <div class="icon-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M12 4v16"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h4>Targeting beats blanket spend</h4>
+        <p>The hardest decision is often who not to invest in.</p>
+      </div>
+      <div class="icon-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M5 19h14"/><path d="M7 16V8"/><path d="M12 16V5"/><path d="M17 16v-6"/></svg></div>
+        <h4>Experiments create trust</h4>
+        <p>Holdouts and rotation separate incrementality from noise.</p>
+      </div>
+    </div>
+
+    <div class="card pad reveal">
+      <h3 style="font-size:26px;margin:0 0 10px;">Why this started to feel like pricing</h3>
+      <p>Incentives and pricing look different on the surface. One gives money out; the other asks users to pay. But both are trying to shape behaviour under constraints. Both need a view of elasticity, incrementality, LTV and budget. Both can destroy value if they subsidise users who would have acted anyway.</p>
+    </div>
+
+    <div class="experiment-engine reveal">
+      <div class="exp-panel">
+        <div class="kicker">Experimentation engine</div>
+        <h3 style="font-size:26px;margin:0 0 12px;">How I would prove incrementality before scaling</h3>
+        <p>Observed growth is not the same as pricing impact. I would split exposure cleanly, define the measurement window upfront, and read retention after the incentive or price action ends.</p>
+        <div class="split-row">
+          <div class="split-label">Control</div>
+          <div class="split-track"><div class="split-fill ctrl" style="width:10%"></div></div>
+          <div class="split-val">10%</div>
+        </div>
+        <div class="split-row">
+          <div class="split-label">Experiment</div>
+          <div class="split-track"><div class="split-fill" style="width:10%"></div></div>
+          <div class="split-val">10%</div>
+        </div>
+        <div class="split-row">
+          <div class="split-label">Campaign</div>
+          <div class="split-track"><div class="split-fill camp" style="width:80%"></div></div>
+          <div class="split-val">80%</div>
+        </div>
+      </div>
+      <div class="exp-panel">
+        <div class="kicker">Metric tree</div>
+        <h3 style="font-size:26px;margin:0 0 12px;">From exposure to retained value</h3>
+        <div class="metric-tree">
+          <div class="metric-node">Eligible cohort</div>
+          <div class="metric-node">Exposure</div>
+          <div class="metric-node">Behaviour change</div>
+          <div class="metric-node">Incremental value</div>
+        </div>
+        <div class="formula" style="margin-top:18px;">
+<span class="g">Observed growth</span><br>
+= organic trend + seasonality + competitor effect + <span class="y">pricing impact</span>
+        </div>
+        <p class="small">The job is to isolate the last term, not celebrate the total line.</p>
+      </div>
+    </div>
+
   </div>
-
-  <div class="grid4">
-    <div class="card">
-      <div class="label">Spend intensity</div>
-      <div class="metric smallm">$28bn</div>
-      <p class="small">Pledged subsidies across Alibaba, JD.com and Meituan in instant retail.</p>
-    </div>
-    <div class="card">
-      <div class="label">Expected spend</div>
-      <div class="metric smallm">RMB 160bn+</div>
-      <p class="small">Estimated spend over 12–18 months to defend or grow share.</p>
-    </div>
-    <div class="card">
-      <div class="label">Regulatory signal</div>
-      <div class="metric smallm">Price war</div>
-      <p class="small">Regulators criticised cutthroat competition and deflationary pressure.</p>
-    </div>
-    <div class="card">
-      <div class="label">Strategic lesson</div>
-      <div class="metric smallm">Retention</div>
-      <p class="small">The test is what remains after subsidy withdrawal.</p>
-    </div>
-  </div>
-
-  <table>
-    <tr><th>What happened</th><th>What I would measure</th><th>My takeaway for Wolt</th></tr>
-    <tr>
-      <td><b>Players bought order volume quickly</b></td>
-      <td>First order, repeat order, 30/60/90-day retained frequency</td>
-      <td class="warn">Order share is not enough; retained frequency is the real signal</td>
-    </tr>
-    <tr>
-      <td><b>Subsidy created pressure on profits</b></td>
-      <td>Contribution per order, cost per retained user, subsidy payback window</td>
-      <td class="bad">A price war can destroy category margin if spend is not targeted</td>
-    </tr>
-    <tr>
-      <td><b>Operations became the hidden battleground</b></td>
-      <td>ETA, courier utilisation, batching, cancellation rate, zone density</td>
-      <td class="good">Density and reliability are harder to copy than a coupon</td>
-    </tr>
-    <tr>
-      <td><b>Regulators pushed back</b></td>
-      <td>Merchant burden, worker impact, consumer transparency</td>
-      <td class="blue">Pricing needs commercial, operational and regulatory guardrails</td>
-    </tr>
-  </table>
-
-  <div class="lesson"><b>Market share can be bought. Density cannot.</b><br><b>Orders can be bought. Habits cannot.</b><br><b>Coupons can move demand. They do not automatically create loyalty.</b></div>
 </section>
 
-<section class="section">
-  <div class="section-title"><div class="no">5</div><h2>The tech/data capability I would bring</h2></div>
+<section class="part" id="profit">
+  <div class="wrap">
+    <div class="part-tag reveal"><span class="n">03</span><span>Profit anatomy</span></div>
+    <h2 class="reveal">Then I studied food delivery — and found the delivery fee does not really make the money.</h2>
+    <p class="lede reveal">Food delivery is one of the cleanest examples of marketplace capital allocation. It has demand, supply, merchants, price, subsidy, retention and operational constraints — all clearing locally by zone and time. The surprising part is that the delivery transaction itself is usually engineered close to break-even. The profit comes from the layers above it.</p>
 
-  <div class="card">
-    <p>My strength is not only setting a commercial strategy. It is turning a marketplace problem into a measurable system: cohort definition, experiment design, metric hierarchy, product configuration, dashboarding and decision rules.</p>
-  </div>
+    <div class="card reveal">
+      <div class="card-head">
+        <div><span class="co">DoorDash</span> &nbsp;<span class="fy">FY2025 · public filings / results</span></div>
+        <span class="role proof">The proof it can pay</span>
+      </div>
+      <div class="card-body">
+        <div class="shot"><div class="shot-frame">
+          <div style="font-size:22px;">📷</div><div class="shot-label">Screenshot slot</div>
+          <div class="what">Capture the “Key Business and Financial Metrics” table — Marketplace GOV, Revenue, Contribution Profit and Adjusted EBITDA.</div>
+          <div class="src">DoorDash annual report / SEC filing</div>
+        </div></div>
+        <div class="ledger">
+          <table>
+            <tr><td class="lab">Marketplace GOV</td><td class="val">$102.0B</td></tr>
+            <tr><td class="lab">Revenue</td><td class="val">$13.7B · 13.4%</td></tr>
+            <tr><td class="lab">Contribution profit</td><td class="val pos">4.7% of GOV</td></tr>
+            <tr><td class="lab">Adjusted EBITDA</td><td class="val pos">2.7% of GOV</td></tr>
+            <tr><td class="lab">GAAP net income</td><td class="val pos">$935M · 0.9%</td></tr>
+            <tr><td class="lab">Ads run-rate incl. Wolt</td><td class="val pos">&gt;$1B / yr</td></tr>
+          </table>
+        </div>
+        <div class="readout green">
+          <div class="kicker">What this says</div>
+          <p>Even the strongest operator earns a very thin percentage of GOV as net income. Profit is a thin film on top of a massive transaction base — supported by density, frequency, advertising and disciplined allocation.</p>
+        </div>
+      </div>
+    </div>
 
-  <div class="grid3">
-    <div class="tech">
-      <h3>1. Instrument the decision</h3>
-      <p>Translate pricing or incentive strategy into observable events: eligibility, exposure, action, conversion, spend, contribution and post-period retention.</p>
-      <div class="chips"><span class="chip">event taxonomy</span><span class="chip">cohort logic</span><span class="chip">metric tree</span></div>
+    <div class="chart-card reveal">
+      <div class="chart-title">
+        <h3>Profit is a thin layer on top of GOV</h3>
+        <div class="source">Illustrative read from public P&L metrics</div>
+      </div>
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-label">Revenue / GOV</div>
+          <div class="bar-track"><div class="bar-fill blue" style="width:100%"></div></div>
+          <div class="bar-val">13.4%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Contribution / GOV</div>
+          <div class="bar-track"><div class="bar-fill profit" style="width:35%"></div></div>
+          <div class="bar-val">4.7%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Adj. EBITDA / GOV</div>
+          <div class="bar-track"><div class="bar-fill profit" style="width:20%"></div></div>
+          <div class="bar-val">2.7%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Net income / GOV</div>
+          <div class="bar-track"><div class="bar-fill profit" style="width:7%"></div></div>
+          <div class="bar-val">0.9%</div>
+        </div>
+      </div>
+      <div class="caption">This is why pricing needs precision: a few points of misallocated subsidy can wipe out the entire profit pool.</div>
     </div>
-    <div class="tech">
-      <h3>2. Build testable systems</h3>
-      <p>Use holdouts, A/B tests and zone-hour rotations to distinguish true lift from seasonality, campaign noise and natural cohort drift.</p>
-      <div class="chips"><span class="chip">holdout</span><span class="chip">rotation test</span><span class="chip">sample size</span></div>
-    </div>
-    <div class="tech">
-      <h3>3. Productise allocation</h3>
-      <p>Move from one-off campaigns to configurable rules: who is eligible, what price/subsidy they see, when it stops, and how ROI is read.</p>
-      <div class="chips"><span class="chip">rule engine</span><span class="chip">budget caps</span><span class="chip">kill criteria</span></div>
-    </div>
-  </div>
 
-  <div class="card">
-    <h3>What this looks like in practice</h3>
-    <table>
-      <tr><th>Layer</th><th>Questions</th><th>Output</th></tr>
-      <tr><td><b>Data layer</b></td><td>Who saw what price/subsidy, when, where and under what marketplace condition?</td><td>Clean exposure table by user × zone × time</td></tr>
-      <tr><td><b>Model layer</b></td><td>Which cohorts have higher LTV, higher elasticity and higher risk of churn?</td><td>Cohort score / uplift score / defend priority</td></tr>
-      <tr><td><b>Experiment layer</b></td><td>What is incremental vs organic? Is the result statistically readable?</td><td>Lift, confidence, power, payback</td></tr>
-      <tr><td><b>Product layer</b></td><td>Can we configure the strategy without manual rebuilds market by market?</td><td>Rules, thresholds, budget caps, localisation</td></tr>
-      <tr><td><b>Decision layer</b></td><td>Should we scale, iterate, or stop?</td><td>Scale / monitor / cut recommendation</td></tr>
-    </table>
+    <div class="card reveal">
+      <div class="card-head">
+        <div><span class="co">Delivery Hero</span> &nbsp;<span class="fy">FY2025 · parent context</span></div>
+        <span class="role parent">Wolt's parent</span>
+      </div>
+      <div class="card-body">
+        <div class="shot"><div class="shot-frame">
+          <div style="font-size:22px;">📷</div><div class="shot-label">Screenshot slot</div>
+          <div class="what">Capture the KPI summary — GMV, Segment Revenue, Adjusted EBITDA, subscription share and quick-commerce / AdTech lines if shown.</div>
+          <div class="src">Delivery Hero FY2025 / quarterly results</div>
+        </div></div>
+        <div class="ledger">
+          <table>
+            <tr><td class="lab">GMV</td><td class="val">€49.2B</td></tr>
+            <tr><td class="lab">Total segment revenue</td><td class="val">€14.8B</td></tr>
+            <tr><td class="lab">Adjusted EBITDA</td><td class="val pos">€903M · +30%</td></tr>
+            <tr><td class="lab">Adj. EBITDA / GMV</td><td class="val pos">1.8%</td></tr>
+            <tr><td class="lab">Subscribers share of GMV</td><td class="val">~39%</td></tr>
+            <tr><td class="lab">Quick-commerce GMV</td><td class="val">~€7.5B</td></tr>
+            <tr><td class="lab">AdTech revenue run-rate</td><td class="val pos">~€1.5B / yr</td></tr>
+          </table>
+        </div>
+        <div class="readout green">
+          <div class="kicker">What this says — and why it matters for Wolt</div>
+          <p>The profit story is mix shift: subscribers, quick commerce and advertising. This means Consumer Pricing should not optimise only for contribution per order; it should optimise for downstream profit pools.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="card-head">
+        <div><span class="co">Meituan</span> &nbsp;<span class="fy">FY2025 · price war counter-example</span></div>
+        <span class="role counter">The cautionary case</span>
+      </div>
+      <div class="card-body">
+        <div class="shot"><div class="shot-frame">
+          <div style="font-size:22px;">📷</div><div class="shot-label">Screenshot slot</div>
+          <div class="what">Capture revenue growth and operating loss during the subsidy war.</div>
+          <div class="src">Meituan-W FY2025 results announcement</div>
+        </div></div>
+        <div class="ledger">
+          <table>
+            <tr><td class="lab">Revenue</td><td class="val">RMB 364.9B</td></tr>
+            <tr><td class="lab">Revenue growth YoY</td><td class="val">+8%</td></tr>
+            <tr><td class="lab">Operating loss</td><td class="val neg">−RMB 17.0B</td></tr>
+            <tr><td class="lab">Core local commerce op.</td><td class="val neg">−RMB 6.9B</td></tr>
+            <tr><td class="lab">Net loss</td><td class="val neg">−RMB 23.4B</td></tr>
+            <tr><td class="lab">Q2 core-commerce op. profit</td><td class="val neg">−75.6% YoY</td></tr>
+          </table>
+        </div>
+        <div class="readout red">
+          <div class="kicker">What this says</div>
+          <p>Demand can grow while value is destroyed. A subsidy war can make revenue look healthy while the economics underneath break.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="h-rule">
+
+    <div class="block reveal">
+      <div class="kicker">The structure underneath</div>
+      <h3 style="font-size:28px;margin:0 0 8px;">Profit lives in three layers above delivery</h3>
+      <p class="small" style="max-width:62ch;">Delivery is the transaction layer. Its job is to feed higher-margin layers that a competitor cannot subsidise away overnight.</p>
+      <div class="stack">
+        <div class="layer l-ads"><div class="tag"><b>Advertising</b></div><div class="desc"><b>Highest margin.</b> Retail media and sponsored placement monetise app frequency and purchase intent.</div></div>
+        <div class="layer l-qc"><div class="tag"><b>Quick commerce</b></div><div class="desc"><b>Basket and frequency.</b> Grocery / retail / multi-vertical use cases turn a food app into an everyday app.</div></div>
+        <div class="layer l-sub"><div class="tag"><b>Subscription</b></div><div class="desc"><b>Retention lock-in.</b> Wolt+ / DashPass pre-commits demand and is hard for a subsidising entrant to dislodge.</div></div>
+        <div class="layer l-base"><div class="tag">Delivery</div><div class="desc">The courier / merchant / payment layer. It must be reliable, dense and efficient — but it is not where most durable margin lives.</div></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="analysis">
-  <div class="section-title"><div class="no">6</div><h2>How I would actually take data, calculate, and decide</h2></div>
+<section class="part" id="wolt">
+  <div class="wrap">
+    <div class="part-tag reveal"><span class="n">04</span><span>What this means for Wolt</span></div>
+    <h2 class="reveal">Consumer Pricing should not optimise the order. It should optimise the portfolio.</h2>
+    <p class="lede reveal">If Wolt’s profit pools are ads, Wolt+ and quick commerce, pricing should be judged on whether it grows those pools — not only whether the individual delivery order makes money.</p>
 
-  <div class="card">
-    <h3>A. Start with a cohort-level P&L view</h3>
-    <p>I would avoid judging pricing or subsidy decisions only on gross order growth. I would first build a cohort-level contribution view:</p>
-    <div class="formula">
-<span class="g">Cohort LTV</span> = margin per order × order frequency × expected lifetime<br>
-<span class="g">Incremental value</span> = LTV with intervention − LTV without intervention<br>
-<span class="g">Decision rule</span> = invest while marginal subsidy ≤ incremental LTV protected
+    <div class="icon-grid reveal">
+      <div class="icon-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M5 18V6"/><path d="M5 18h14"/><path d="M8 15l3-4 3 2 4-6"/></svg></div>
+        <h4>Wolt Ads</h4>
+        <p>Retail media monetises frequency and intent. Pricing that increases profitable frequency has value beyond order margin.</p>
+      </div>
+      <div class="icon-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v6c0 4-3 7-7 8-4-1-7-4-7-8V7l7-4z"/><path d="M9 12l2 2 4-5"/></svg></div>
+        <h4>Wolt+ subscription</h4>
+        <p>Subscription members are the retention core. A defensive budget should protect this base first.</p>
+      </div>
+      <div class="icon-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M6 7l1 13h10l1-13"/><path d="M9 7a3 3 0 016 0"/></svg></div>
+        <h4>Q-commerce</h4>
+        <p>Grocery and retail raise basket, frequency and cross-vertical lifetime value.</p>
+      </div>
+      <div class="icon-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/><path d="M4 12h2"/><path d="M18 12h2"/></svg></div>
+        <h4>Density</h4>
+        <p>Dense zones convert demand into better ETA, utilisation and repeat behaviour.</p>
+      </div>
     </div>
-    <p class="small">This is the same logic I used in incentive allocation: the spend is justified only if it creates incremental long-term value.</p>
-  </div>
 
-  <div class="card">
-    <h3>B. Read elasticity by segment, not as one average</h3>
-    <p>A single platform-level elasticity number is too blunt. I would calculate response curves by customer cohort, city, zone, time slot and order occasion.</p>
-    <table>
-      <tr><th>Segment</th><th>Expected pricing response</th><th>Pricing action</th></tr>
-      <tr><td>High LTV + low price sensitivity</td><td>Retains with light intervention</td><td class="good">Protect margin; avoid over-subsidy</td></tr>
-      <tr><td>High LTV + high price sensitivity</td><td>At risk under entrant subsidy</td><td class="good">Defend selectively</td></tr>
-      <tr><td>Low LTV + high price sensitivity</td><td>Moves only for discounts</td><td class="bad">Do not chase</td></tr>
-      <tr><td>New users in high-density zones</td><td>Potential to form habit</td><td class="warn">Test acquisition subsidy with strict retention read</td></tr>
-    </table>
+    <div class="callout reveal">
+      <div class="kicker">Pricing implication</div>
+      <p>Sometimes the right price loses a little at the order line because it buys a high-margin habit above it. But only if the habit is real, retained, and incremental.</p>
+    </div>
   </div>
+</section>
 
-  <div class="card">
-    <h3>C. Build a marketplace-aware pricing model</h3>
-    <p>Food delivery pricing cannot be optimised only at customer level. The model needs to know the local operational state.</p>
-    <div class="formula">
-<span class="g">Maximise</span> long-term contribution(z, t, cohort)<br>
+<section class="part" id="war">
+  <div class="wrap">
+    <div class="part-tag reveal"><span class="n">05</span><span>What price wars actually teach</span></div>
+    <h2 class="reveal">Price wars are not about who can buy the most orders. They are about who can convert bought orders into density, habit and margin.</h2>
+    <p class="lede reveal">China’s delivery war and Keeta’s overseas expansion are useful because they show both failure modes: match every subsidy and destroy margin; refuse to match but fail to defend the moat and lose the market.</p>
+
+    <div class="chart-card reveal">
+      <div class="chart-title">
+        <h3>Two failure modes in subsidy wars</h3>
+        <div class="source">Strategic read</div>
+      </div>
+      <div class="icon-grid" style="grid-template-columns:repeat(2,1fr);margin-top:0;">
+        <div class="icon-card" style="border-top:3px solid var(--war);">
+          <div class="icon" style="background:var(--war-bg);border-color:#E7B6AE"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 8h10a4 4 0 010 8H9"/><path d="M16 5l3 3-3 3"/></svg></div>
+          <h4>Match everything</h4>
+          <p>Order share may hold, but the category gives away the entire margin pool.</p>
+        </div>
+        <div class="icon-card" style="border-top:3px solid var(--gold);">
+          <div class="icon" style="background:var(--gold-bg);border-color:#E2D0A1"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/><path d="M6 6l12 12"/></svg></div>
+          <h4>Refuse without a moat</h4>
+          <p>Discipline alone fails if service, selection, subscription and supply are not strong enough.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-title reveal">Theatre 1 — domestic instant-retail war</div>
+    <div class="tl-sub reveal">Not a fight about food. A fight to own the dense fulfilment network behind the everyday app.</div>
+    <div class="tl reveal">
+      <div class="ev atk">
+        <div class="date">ENTRY</div>
+        <div class="ev-t">A new attacker enters with subsidy</div>
+        <p>A large player can buy demand quickly through discounts and marketing. The first-order metric moves immediately.</p>
+        <div class="moves"><span class="mv a">demand acquisition</span><span class="mv s">volume spike</span></div>
+      </div>
+      <div class="ev atk">
+        <div class="date">ESCALATION</div>
+        <div class="ev-t">The leader matches to defend share</div>
+        <p>Matching protects order share, but it can transfer profit from the whole category to consumers without creating retained value.</p>
+        <div class="moves"><span class="mv d">leader defends</span><span class="mv a">margin pressure</span></div>
+      </div>
+      <div class="ev reg">
+        <div class="date">AFTERMATH</div>
+        <div class="ev-t">The real test comes after subsidy withdrawal</div>
+        <p>If order frequency disappears after subsidy ends, the platform bought traffic, not habit.</p>
+        <div class="moves"><span class="mv r">post-subsidy retention</span><span class="mv s">payback test</span></div>
+      </div>
+    </div>
+
+    <div class="tl-title reveal">Theatre 2 — Keeta goes abroad</div>
+    <div class="tl-sub reveal">The same formula, exported: attack supply, discount demand, then monetise after share is locked.</div>
+    <div class="tl reveal">
+      <div class="ev atk">
+        <div class="date">ATTACK</div>
+        <div class="ev-t">The entrant attacks both sides of the market</div>
+        <p>Free delivery flips price-sensitive demand. Higher courier pay degrades incumbent service. Merchant switching accelerates the flywheel.</p>
+        <div class="moves"><span class="mv a">demand subsidy</span><span class="mv a">courier pay</span><span class="mv a">merchant switching</span></div>
+      </div>
+      <div class="ev def">
+        <div class="date">DEFENCE</div>
+        <div class="ev-t">Refusal alone is not strategy</div>
+        <p>Do not blanket-match. But refusing to match only works if the incumbent has something stronger to defend: density, subscription, merchant depth and service reliability.</p>
+        <div class="moves"><span class="mv d">density</span><span class="mv d">subscription</span><span class="mv d">merchant depth</span></div>
+      </div>
+    </div>
+
+    <div class="duo reveal">
+      <div class="col atk">
+        <h4>How the entrant attacks</h4>
+        <div class="who">Keeta-style playbook</div>
+        <ol>
+          <li><b>Starve supply first.</b> Poach couriers so incumbent orders are slower and less reliable.</li>
+          <li><b>Flip price-sensitive demand</b> with free delivery and deep coupons.</li>
+          <li><b>Pry loose merchants</b> where exclusivity is weak or switching costs are low.</li>
+          <li><b>Fund losses long</b> from a deep parent balance sheet.</li>
+          <li><b>Monetise after winning</b> through commission or take-rate expansion once share is locked.</li>
+        </ol>
+      </div>
+      <div class="col def">
+        <h4>What actually defends</h4>
+        <div class="who">Incumbent options</div>
+        <ol>
+          <li><b>Protect courier supply</b> before defending price.</li>
+          <li><b>Lock retention in subscription</b> — the asset a coupon cannot replicate quickly.</li>
+          <li><b>Deepen merchant relationships</b> through selection, tools and advertising value.</li>
+          <li><b>Do not blanket-match.</b> That is the Meituan trap. But refusal alone is the Deliveroo trap.</li>
+          <li><b>Defend selectively</b> — high-LTV / Wolt+ core and dense zones first.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="thesis reveal">
+      <div class="kicker">The Wolt thesis</div>
+      <h3>Between two failure modes, one disciplined path</h3>
+      <p><b>Match every subsidy</b> and margin dies. <b>Refuse and do nothing else</b> and the market can still be lost. The right defence is targeted: protect density, Wolt+ retention, merchant depth and high-LTV customers while letting mercenary volume walk.</p>
+      <p class="punch">Market share can be bought. Density, subscription lock-in and merchant trust cannot.</p>
+    </div>
+  </div>
+</section>
+
+<section class="part" id="director">
+  <div class="wrap">
+    <div class="part-tag reveal"><span class="n">06</span><span>If I were Director</span></div>
+    <h2 class="reveal">I would run Consumer Pricing as a capital-allocation system.</h2>
+    <p class="lede reveal">The decision is not “raise or lower price.” The decision is: <strong>which behaviour to buy, which cohort to defend, where density is worth protecting, and how to know when to stop.</strong></p>
+
+    <div class="card pad reveal">
+      <h3 style="font-size:26px;margin:0 0 10px;">The operating model</h3>
+      <div class="formula">
+<span class="g">Maximise</span> long-term contribution(cohort, zone, time)<br>
 <span class="g">Subject to</span>: ETA floor, fulfillment floor, courier supply, budget cap, regulatory guardrails<br><br>
 <span class="b">Inputs</span>: customer LTV, price elasticity, Wolt+ status, distance, basket size, courier utilisation, merchant density, competitor pressure<br>
 <span class="y">Output</span>: price / fee / subsidy / no-action decision by cohort × zone × time
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>D. Test through holdouts and rotational experiments</h3>
-    <p>In my own work, I used holdouts, A/B testing, significance testing, sample-size estimation and rotational experiments to avoid acting on noise. For Wolt, I would apply the same discipline:</p>
-    <div class="grid2">
-      <div class="card" style="margin:0">
-        <h3>Holdout design</h3>
-        <p>Keep comparable customers, zones or time windows untreated so we can separate true incrementality from organic trend.</p>
-      </div>
-      <div class="card" style="margin:0">
-        <h3>Rotation design</h3>
-        <p>Rotate pricing or subsidy treatment by zone-hour where operationally feasible, especially for food delivery where local supply-demand balance changes quickly.</p>
       </div>
     </div>
-    <div class="chips">
-      <span class="chip">holdout</span><span class="chip">A/B test</span><span class="chip">sample-size estimation</span><span class="chip">significance read</span><span class="chip">zone-hour rotation</span><span class="chip">post-subsidy retention</span>
-    </div>
-  </div>
 
-  <div class="card">
-    <h3>E. Decide using a defend / monitor / cede matrix</h3>
-    <table>
-      <tr><th style="width:22%"></th><th>Low price sensitivity</th><th>High price sensitivity</th></tr>
-      <tr><td><b>High LTV</b></td><td class="good">Hold: protect margin, use Wolt+ and service quality</td><td class="good">Defend: targeted subsidy, retention hooks, zone-level monitoring</td></tr>
-      <tr><td><b>Low LTV</b></td><td class="warn">Monitor: avoid unnecessary discounting</td><td class="bad">Cede: do not chase mercenary volume</td></tr>
+    <table class="clean reveal">
+      <tr><th>Situation</th><th>What I would do first</th><th>Decision rule</th></tr>
+      <tr>
+        <td><b>Competitor launches free delivery</b></td>
+        <td>Separate high-LTV / Wolt+ users from low-retention deal seekers; read churn, frequency and basket response.</td>
+        <td class="good">Defend only where subsidy protects incremental LTV or subscription retention.</td>
+      </tr>
+      <tr>
+        <td><b>Courier supply gets attacked</b></td>
+        <td>Watch ETA, cancellation, unpicked orders and courier utilisation by zone-hour before focusing only on demand price.</td>
+        <td class="good">Protect supply density where service degradation threatens high-LTV demand.</td>
+      </tr>
+      <tr>
+        <td><b>Order volume spikes from subsidy</b></td>
+        <td>Run holdout / rotation read to separate organic growth, seasonality, competitor effect and pricing impact.</td>
+        <td class="warn">Scale only if post-subsidy frequency holds.</td>
+      </tr>
+      <tr>
+        <td><b>Budget is fixed</b></td>
+        <td>Build defend / monitor / cede matrix by LTV and price sensitivity.</td>
+        <td class="bad">Do not fund the bottom-right cell: low-LTV, high price-sensitive users.</td>
+      </tr>
     </table>
-    <p class="small">The most dangerous mistake is spending defensive budget on the bottom-right cell: users who are expensive to keep and unlikely to retain.</p>
+
+    <div class="chart-card reveal">
+      <div class="chart-title">
+        <h3>The defend / monitor / cede map</h3>
+        <div class="source">Pricing decision matrix</div>
+      </div>
+      <table class="clean">
+        <tr><th style="width:22%;"></th><th>Low price sensitivity</th><th>High price sensitivity</th></tr>
+        <tr><td><b>High LTV</b></td><td class="good">Hold: protect margin, use Wolt+ and service quality</td><td class="good">Defend: targeted subsidy, retention hooks, zone-level monitoring</td></tr>
+        <tr><td><b>Low LTV</b></td><td class="warn">Monitor: avoid unnecessary discounting</td><td class="bad">Cede: do not chase mercenary volume</td></tr>
+      </table>
+    </div>
   </div>
 </section>
 
-<div class="final">
-  The tools are different. The question is not.<br><br>
-  <b>Where should the next dollar go to create the most long-term value?</b><br><br>
-  That is the problem I have spent the last few years solving — and the lens I would bring to consumer pricing at Wolt.
-</div>
+<section class="part" id="first90">
+  <div class="wrap">
+    <div class="part-tag reveal"><span class="n">07</span><span>First 90 days</span></div>
+    <h2 class="reveal">The analyses I would run before scaling any pricing move</h2>
+    <p class="lede reveal">My strength is turning a marketplace problem into a measurable system: cohort definition, experiment design, metric hierarchy, product configuration, dashboarding and decision rules.</p>
 
-</div>
+    <div class="icon-grid reveal" style="grid-template-columns:repeat(3,1fr);">
+      <div class="icon-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/><circle cx="8" cy="6" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="16" cy="18" r="1"/></svg></div>
+        <h4>1. Instrument the decision</h4>
+        <p>Eligibility, exposure, action, conversion, spend, contribution and post-period retention.</p>
+        <div class="chips"><span class="chip">event taxonomy</span><span class="chip">metric tree</span></div>
+      </div>
+      <div class="icon-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/><circle cx="12" cy="12" r="7"/></svg></div>
+        <h4>2. Build testable systems</h4>
+        <p>Holdouts, A/B tests and zone-hour rotations to distinguish true lift from noise.</p>
+        <div class="chips"><span class="chip">holdout</span><span class="chip">sample size</span></div>
+      </div>
+      <div class="icon-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M7 7h10v10H7z"/><path d="M3 3h4v4H3z"/><path d="M17 3h4v4h-4z"/><path d="M3 17h4v4H3z"/><path d="M17 17h4v4h-4z"/></svg></div>
+        <h4>3. Productise allocation</h4>
+        <p>Rules for eligibility, price/subsidy shown, stop criteria and ROI read.</p>
+        <div class="chips"><span class="chip">rule engine</span><span class="chip">budget caps</span></div>
+      </div>
+    </div>
+
+    <table class="clean reveal">
+      <tr><th>Data area</th><th>Question I would answer</th><th>Output</th></tr>
+      <tr><td><b>Customer cohorts</b></td><td>Who drives repeat contribution? Who is price-sensitive? Who is Wolt+ eligible but not converted?</td><td>Defend priority score</td></tr>
+      <tr><td><b>Order economics</b></td><td>Margin per order by distance, basket size, merchant type and time slot</td><td>Contribution curve</td></tr>
+      <tr><td><b>Marketplace health</b></td><td>ETA, fulfillment, courier utilisation, order density and cancellations by zone-hour</td><td>Operational constraint map</td></tr>
+      <tr><td><b>Competitive pressure</b></td><td>Where is Uber / Keeta-style competition likely to attack first?</td><td>Contestability map</td></tr>
+      <tr><td><b>Experiment history</b></td><td>Which fee, discount, subscription or delivery-price tests have already been run?</td><td>Incrementality library</td></tr>
+    </table>
+
+
+    <div class="plan90 reveal">
+      <div class="plan-card">
+        <div class="day">First 30 days</div>
+        <h3>Map the economics</h3>
+        <ul>
+          <li>Build cohort LTV and price-sensitivity view</li>
+          <li>Map contribution by zone, basket, distance and time</li>
+          <li>Identify Wolt+ retention and conversion opportunities</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <div class="day">Days 31–60</div>
+        <h3>Test the levers</h3>
+        <ul>
+          <li>Run targeted fee / subsidy experiments</li>
+          <li>Use holdouts or zone-hour rotations where feasible</li>
+          <li>Measure post-subsidy retained frequency</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <div class="day">Days 61–90</div>
+        <h3>Scale the system</h3>
+        <ul>
+          <li>Create defend / monitor / cede rules</li>
+          <li>Productise thresholds and budget caps</li>
+          <li>Scale only where incremental LTV exceeds cost</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <div class="kicker">The question I keep coming back to</div>
+      <p>Over the last few years, the tools changed. The industries changed. But the question did not. <em>Where should the next dollar go to create the most long-term value?</em></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="kicker">Sources & screenshot notes</div>
+    <div class="srcs">
+      Public materials referenced in this memo include DoorDash annual reports / SEC filings, Delivery Hero annual and quarterly results, Meituan public results announcements, Wolt / DoorDash ads and partnership releases, and market coverage from Reuters, Financial Times, Caixin Global, Momentum Works, CNBC, HKFP, Measurable AI and other public sources. Screenshot slots are intentionally left as placeholders so primary-source tables can be inserted cleanly before final circulation.
+    </div>
+    <div class="sig">Effy Song · marketplace capital allocation & consumer pricing · 2026</div>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
